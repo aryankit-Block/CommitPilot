@@ -90,7 +90,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [Your GitHub](https://github.com/yourusername)
+- **Ankit** - *Initial work* - [aryankit-Block](https://github.com/aryankit-Block)
 
 ## 🙏 Acknowledgments
 
