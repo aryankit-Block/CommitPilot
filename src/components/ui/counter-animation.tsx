@@ -10,34 +10,53 @@ interface CounterAnimationProps {
 }
 
 export function CounterAnimation({ end, duration, suffix = '', className = '' }: CounterAnimationProps) {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState(0);
   const countRef = useRef<HTMLDivElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const animationFrameId = useRef<number>();
 
   useEffect(() => {
+    const startAnimation = () => {
+      // Reset count to 0 when starting animation
+      setCount(0);
+      
+      const startTime = Date.now();
+      const endTime = startTime + duration;
+      
+      const updateCount = () => {
+        const now = Date.now();
+        const progress = Math.min(1, (now - startTime) / duration);
+        const currentCount = Math.floor(progress * end);
+        
+        setCount(currentCount);
+        
+        if (now < endTime) {
+          animationFrameId.current = requestAnimationFrame(updateCount);
+        } else {
+          setCount(end);
+        }
+      };
+      
+      // Cancel any existing animation
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+      
+      // Start new animation
+      animationFrameId.current = requestAnimationFrame(updateCount);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
-            let start = 0;
-            const step = end / (duration / 16); // 16ms is roughly one frame at 60fps
-            const timer = setInterval(() => {
-              start += step;
-              if (start >= end) {
-                setCount(end);
-                clearInterval(timer);
-              } else {
-                setCount(Math.floor(start));
-              }
-            }, 16);
-
-            return () => clearInterval(timer);
-          } else if (!entry.isIntersecting) {
-            setHasAnimated(false);
-            setCount(0);
+        if (entries[0].isIntersecting) {
+          // Start animation when element enters viewport
+          startAnimation();
+        } else {
+          // Reset count when element leaves viewport
+          setCount(0);
+          if (animationFrameId.current) {
+            cancelAnimationFrame(animationFrameId.current);
           }
-        });
+        }
       },
       { threshold: 0.1 }
     );
@@ -50,8 +69,11 @@ export function CounterAnimation({ end, duration, suffix = '', className = '' }:
       if (countRef.current) {
         observer.unobserve(countRef.current);
       }
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
-  }, [end, duration, hasAnimated]);
+  }, [end, duration]);
 
   return (
     <div ref={countRef} className={className}>
