@@ -1,11 +1,16 @@
-import type { NextConfig } from "next";
+import { NextConfig } from 'next'
 
-const nextConfig: NextConfig = {
-  poweredByHeader: false,
-  eslint: {
-    ignoreDuringBuilds: true,
+const config: NextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['avatars.githubusercontent.com'],
   },
-  devIndicators: false
-};
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['localhost:3000'],
+    },
+  },
+}
 
-export default nextConfig;
+export default config
