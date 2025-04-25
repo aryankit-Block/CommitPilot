@@ -4,7 +4,7 @@ import { Color, Scene, Fog, PerspectiveCamera, Vector3, Group } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-// @ts-ignore
+// @ts-expect-error - Globe data is imported from a JSON file
 import countries from "@/data/globe.json";
 
 type GlobeObject = {
@@ -79,7 +79,7 @@ interface WorldProps {
 
 const numbersOfRings: number[] = [0];
 
-type ObjAccessor<T> = (obj: object) => T;
+type ObjAccessor<T> = (obj: Position) => T;
 
 export function Globe({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);
@@ -177,21 +177,21 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
     globeRef.current
       .arcsData(data)
-      .arcStartLat((d: any) => (d as Position).startLat || 0 as ObjAccessor<number>)
-      .arcStartLng((d: any) => (d as Position).startLng || 0 as ObjAccessor<number>)
-      .arcEndLat((d: any) => (d as Position).endLat || 0 as ObjAccessor<number>)
-      .arcEndLng((d: any) => (d as Position).endLng || 0 as ObjAccessor<number>)
-      .arcColor((e: any) => (e as Position).color || defaultProps.polygonColor as ObjAccessor<string>)
-      .arcAltitude((e: any) => (e as Position).arcAlt || 0 as ObjAccessor<number>)
+      .arcStartLat((d: unknown) => (d as Position).startLat || 0)
+      .arcStartLng((d: unknown) => (d as Position).startLng || 0)
+      .arcEndLat((d: unknown) => (d as Position).endLat || 0)
+      .arcEndLng((d: unknown) => (d as Position).endLng || 0)
+      .arcColor((e: unknown) => (e as Position).color || defaultProps.polygonColor)
+      .arcAltitude((e: unknown) => (e as Position).arcAlt || 0)
       .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
       .arcDashLength(defaultProps.arcLength)
-      .arcDashInitialGap((e: any) => (e as Position).order || 0 as ObjAccessor<number>)
+      .arcDashInitialGap((e: unknown) => (e as Position).order || 0)
       .arcDashGap(15)
       .arcDashAnimateTime(() => defaultProps.arcTime);
 
     globeRef.current
       .pointsData(filteredPoints)
-      .pointColor((e: any) => (e as Position).color || defaultProps.polygonColor as ObjAccessor<string>)
+      .pointColor((e: unknown) => (e as Position).color || defaultProps.polygonColor)
       .pointsMerge(true)
       .pointAltitude(0.0)
       .pointRadius(2);
