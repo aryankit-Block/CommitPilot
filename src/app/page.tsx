@@ -6,7 +6,28 @@ import { FeatureCards } from '@/components/ui/feature-cards';
 import { CounterAnimation } from '@/components/ui/counter-animation';
 import { Cover } from '@/components/ui/cover';
 import { Button } from '@/components/ui/moving-border';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
+// Mock data for demonstration
+const mockRepositories = [
+  {
+    name: 'commitpilot',
+    description: 'AI-powered GitHub contribution assistant',
+    stars: 42,
+    forks: 12,
+    language: 'TypeScript',
+    lastUpdated: '2 days ago',
+  },
+  {
+    name: 'awesome-project',
+    description: 'An awesome project with great features',
+    stars: 128,
+    forks: 45,
+    language: 'JavaScript',
+    lastUpdated: '1 week ago',
+  },
+];
 
 export default function Home() {
   const router = useRouter();

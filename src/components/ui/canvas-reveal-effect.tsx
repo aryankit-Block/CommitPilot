@@ -175,13 +175,12 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
   );
 };
 
-interface Uniforms {
-  uTime: number;
-  uResolution: [number, number];
-  uMouse: [number, number];
-  uProgress: number;
-}
-
+type Uniforms = {
+  [key: string]: {
+    value: number[] | number[][] | number;
+    type: string;
+  };
+};
 const ShaderMaterial = ({
   source,
   uniforms,
