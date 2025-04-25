@@ -13,7 +13,10 @@ export const Cover = ({
   className?: string;
 }) => {
   const [hovered, setHovered] = useState(false);
-
+  const [isTouching, setIsTouching] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const touchStartY = useRef(0);
+  const touchStartTime = useRef(0);
   const ref = useRef<HTMLDivElement>(null);
 
   const [containerWidth, setContainerWidth] = useState(0);
@@ -24,7 +27,7 @@ export const Cover = ({
       setContainerWidth(ref.current?.clientWidth ?? 0);
 
       const height = ref.current?.clientHeight ?? 0;
-      const numberOfBeams = Math.floor(height / 10); // Adjust the divisor to control the spacing
+      const numberOfBeams = Math.floor(height / 10);
       const positions = Array.from(
         { length: numberOfBeams },
         (_, i) => (i + 1) * (height / (numberOfBeams + 1))
@@ -33,15 +36,64 @@ export const Cover = ({
     }
   }, [ref.current]);
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    if (touch) {
+      touchStartY.current = touch.clientY;
+      touchStartTime.current = Date.now();
+      setIsTouching(true);
+      setIsScrolling(false);
+      setHovered(true);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isTouching || !ref.current) return;
+    
+    const touch = e.touches[0];
+    if (touch) {
+      const deltaY = Math.abs(touch.clientY - touchStartY.current);
+      const deltaTime = Date.now() - touchStartTime.current;
+      
+      // If the touch movement is fast and vertical, it's likely a scroll
+      if (deltaY > 10 && deltaTime < 100) {
+        setIsScrolling(true);
+        setHovered(false);
+        return;
+      }
+
+      if (!isScrolling) {
+        const { left, top } = e.currentTarget.getBoundingClientRect();
+        const x = touch.clientX - left;
+        const y = touch.clientY - top;
+        if (x >= 0 && x <= containerWidth && y >= 0 && y <= ref.current.clientHeight) {
+          setHovered(true);
+        } else {
+          setHovered(false);
+        }
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsTouching(false);
+    setIsScrolling(false);
+    setHovered(false);
+  };
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchMove={handleTouchMove}
       ref={ref}
       className="relative hover:bg-transparent group/cover inline-block dark:bg-transparent bg-transparent px-2 py-2 transition duration-200 rounded-sm"
+      style={{ touchAction: 'pan-y' }}
     >
       <AnimatePresence>
-        {hovered && (
+        {hovered && !isScrolling && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -89,9 +141,8 @@ export const Cover = ({
       {beamPositions.map((position, index) => (
         <Beam
           key={index}
-          hovered={hovered}
+          hovered={hovered && !isScrolling}
           duration={Math.random() * 2 + 1}
-          delay={Math.random() * 2 + 1}
           width={containerWidth}
           style={{
             top: `${position}px`,
@@ -101,9 +152,9 @@ export const Cover = ({
       <motion.span
         key={String(hovered)}
         animate={{
-          scale: hovered ? 1 : 1,
-          x: hovered ? [0, -10, 10, -10, 10, 0] : 0,
-          y: hovered ? [0, 10, -10, 10, -10, 0] : 0,
+          scale: hovered && !isScrolling ? 1 : 1,
+          x: hovered && !isScrolling ? [0, -10, 10, -10, 10, 0] : 0,
+          y: hovered && !isScrolling ? [0, 10, -10, 10, -10, 0] : 0,
         }}
         exit={{
           filter: "none",
@@ -150,12 +201,14 @@ export const Beam = ({
   duration,
   hovered,
   width = 600,
+  delay,
   ...svgProps
 }: {
   className?: string;
   duration?: number;
   hovered?: boolean;
   width?: number;
+  delay?: number;
 } & React.ComponentProps<typeof motion.svg>) => {
   const id = useId();
 
@@ -195,7 +248,7 @@ export const Beam = ({
             duration: hovered ? 0.5 : duration ?? 2,
             ease: "linear",
             repeat: Infinity,
-            delay: hovered ? Math.random() * (1 - 0.2) + 0.2 : 0,
+            delay: delay ?? (hovered ? Math.random() * (1 - 0.2) + 0.2 : 0),
             repeatDelay: hovered ? Math.random() * (2 - 1) + 1 : duration ?? 1,
           }}
         >
