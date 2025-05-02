@@ -1,15 +1,12 @@
 'use client';
 
 import { motion } from "motion/react";
-import Navbar from '@/components/Navbar';
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { ArrowRightIcon, BeakerIcon, CommandLineIcon, CpuChipIcon, LightBulbIcon } from '@heroicons/react/24/outline';
 
 export default function LearnMore() {
   return (
     <main className="min-h-screen bg-[#0d1117] text-white">
-      <Navbar />
-      
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="container mx-auto px-4 py-20">
