@@ -1,6 +1,5 @@
 'use client';
 
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { FeatureCards } from '@/components/ui/feature-cards';
 import { CounterAnimation } from '@/components/ui/counter-animation';
 import { Cover } from '@/components/ui/cover';
