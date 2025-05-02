@@ -33,13 +33,13 @@ export function validateUsername(username: string): boolean {
   return true;
 }
 
-export function validateInput<T extends Record<string, any>>(
+export function validateInput<T extends Record<string, unknown>>(
   data: T,
-  schema: Record<keyof T, (value: any) => boolean>
+  schema: Record<keyof T, (value: unknown) => boolean>
 ): boolean {
   for (const [key, validator] of Object.entries(schema)) {
     try {
-      validator(data[key]);
+      validator(data[key as keyof T]);
     } catch (error) {
       if (error instanceof ValidationError) {
         throw new ValidationError(`${key}: ${error.message}`);
@@ -50,13 +50,13 @@ export function validateInput<T extends Record<string, any>>(
   return true;
 }
 
-export function sanitizeObject<T extends Record<string, any>>(obj: T): T {
-  const sanitized: Record<string, any> = {};
+export function sanitizeObject<T extends Record<string, unknown>>(obj: T): T {
+  const sanitized: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'string') {
       sanitized[key] = sanitizeInput(value);
     } else if (typeof value === 'object' && value !== null) {
-      sanitized[key] = sanitizeObject(value);
+      sanitized[key] = sanitizeObject(value as Record<string, unknown>);
     } else {
       sanitized[key] = value;
     }

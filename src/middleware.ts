@@ -7,7 +7,7 @@ const ipRequests = new Map<string, { count: number; resetTime: number }>();
 
 export async function middleware(request: NextRequest) {
   // Apply security headers
-  let response = securityMiddleware(request);
+  const response = securityMiddleware(request);
 
   // Rate limiting
   const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';

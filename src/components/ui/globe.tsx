@@ -254,9 +254,11 @@ export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
-    gl.setSize(size.width, size.height);
-    gl.setClearColor(0xffaaff, 0);
+    const glInstance = gl;
+    const sizeInstance = size;
+    glInstance.setPixelRatio(window.devicePixelRatio);
+    glInstance.setSize(sizeInstance.width, sizeInstance.height);
+    glInstance.setClearColor(0xffaaff, 0);
   }, []);
 
   return null;

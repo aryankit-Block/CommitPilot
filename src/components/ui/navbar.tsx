@@ -10,11 +10,11 @@ export const Navbar = () => {
   const [visible, setVisible] = useState(true);
 
   // Throttle function to limit how often the scroll handler fires
-  const throttle = (func: Function, limit: number) => {
+  const throttle = (func: () => void, limit: number) => {
     let inThrottle: boolean;
-    return function(...args: any[]) {
+    return function(...args: unknown[]) {
       if (!inThrottle) {
-        func.apply(null, args);
+        func(...args);
         inThrottle = true;
         setTimeout(() => inThrottle = false, limit);
       }
@@ -32,7 +32,7 @@ export const Navbar = () => {
     });
     
     setPrevScrollPos(currentScrollPos);
-  }, 16), [prevScrollPos]); // Reduced throttle time to 16ms (roughly 60fps)
+  }, 16), [prevScrollPos]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
