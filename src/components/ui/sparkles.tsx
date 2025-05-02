@@ -2,10 +2,9 @@
 import React, { useId } from "react";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Container, SingleOrMultiple, RecursivePartial, IOptions, IResizeEvent } from "@tsparticles/engine";
+import type { SingleOrMultiple, RecursivePartial, IOptions, IResizeEvent } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
 import { Container as TsParticlesContainer } from "@tsparticles/engine";
 
 type ParticlesProps = {
@@ -39,7 +38,7 @@ export const SparklesCore = (props: ParticlesProps) => {
     });
   }, []);
 
-  const particlesLoaded = async (container: TsParticlesContainer | undefined): Promise<void> => {
+  const particlesLoaded = async (): Promise<void> => {
     console.log("Particles loaded");
   };
 

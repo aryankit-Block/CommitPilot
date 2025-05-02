@@ -34,7 +34,7 @@ export const validationPatterns = {
 };
 
 // Security middleware
-export function securityMiddleware(request: NextRequest) {
+export function securityMiddleware() {
   const response = NextResponse.next();
 
   // Add security headers

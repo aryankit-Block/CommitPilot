@@ -7,18 +7,6 @@ import { OrbitControls } from "@react-three/drei";
 // @ts-expect-error - Globe data is imported from a JSON file
 import countries from "@/data/globe.json";
 
-type GlobeObject = {
-  startLat?: number;
-  startLng?: number;
-  endLat?: number;
-  endLng?: number;
-  arcAlt?: number;
-  order?: number;
-  color?: string;
-  lat?: number;
-  lng?: number;
-};
-
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: ThreeElements["mesh"] & {
@@ -76,10 +64,6 @@ interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
 }
-
-const numbersOfRings: number[] = [0];
-
-type ObjAccessor<T> = (obj: Position) => T;
 
 export function Globe({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);

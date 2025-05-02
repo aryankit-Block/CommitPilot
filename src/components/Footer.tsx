@@ -111,7 +111,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-[#c4b5fd]">Connect With Us</h4>
             <div className="flex space-x-4">
-              {socialLinks.map(({ Icon, href }, idx) => (
+              {socialLinks.map(({ Icon, href }) => (
                 <motion.a
                   key={href}
                   href={href}

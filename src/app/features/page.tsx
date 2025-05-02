@@ -154,11 +154,4 @@ const FeatureCard = ({
       </div>
     </motion.div>
   );
-};
-
-const FeatureItem = ({ text }: { text: string }) => (
-  <li className="flex items-center space-x-3 text-neutral-300">
-    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-    <span>{text}</span>
-  </li>
-); 
+}; 
