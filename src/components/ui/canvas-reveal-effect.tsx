@@ -284,7 +284,7 @@ const ShaderMaterial: React.FC<{
       blendSrc: THREE.SrcAlphaFactor,
       blendDst: THREE.OneFactor,
     });
-  }, [size.width, size.height, source, getUniforms]);
+  }, [size, source, getUniforms]);
 
   return (
     <mesh ref={ref}>

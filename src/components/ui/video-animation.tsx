@@ -23,6 +23,7 @@ export function VideoAnimation({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const currentRef = containerRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,13 +39,13 @@ export function VideoAnimation({
       { threshold: 0.5 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [hasError]);

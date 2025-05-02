@@ -15,6 +15,7 @@ export function CounterAnimation({ end, duration, suffix = '', className = '' }:
   const animationFrameId = useRef<number>();
 
   useEffect(() => {
+    const currentRef = countRef.current;
     const startAnimation = () => {
       // Reset count to 0 when starting animation
       setCount(0);
@@ -61,13 +62,13 @@ export function CounterAnimation({ end, duration, suffix = '', className = '' }:
       { threshold: 0.1 }
     );
 
-    if (countRef.current) {
-      observer.observe(countRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (countRef.current) {
-        observer.unobserve(countRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);

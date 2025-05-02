@@ -4,24 +4,24 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
 
+// Throttle function to limit how often the scroll handler fires
+const throttle = <T extends (...args: any[]) => void>(func: T, limit: number) => {
+  let inThrottle: boolean;
+  return function(this: any, ...args: Parameters<T>) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
+
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  // Throttle function to limit how often the scroll handler fires
-  const throttle = (func: () => void, limit: number) => {
-    let inThrottle: boolean;
-    return function(...args: unknown[]) {
-      if (!inThrottle) {
-        func(...args);
-        inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
-      }
-    }
-  }
-
-  const handleScroll = useCallback(throttle(() => {
+  const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY;
     const isScrollingUp = prevScrollPos > currentScrollPos;
     const isAtTop = currentScrollPos < 10;
@@ -32,11 +32,12 @@ export const Navbar = () => {
     });
     
     setPrevScrollPos(currentScrollPos);
-  }, 16), [prevScrollPos]);
+  }, [prevScrollPos, setVisible, setPrevScrollPos]);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const throttledHandleScroll = throttle(handleScroll, 16);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, [handleScroll]);
 
   const menuItems = [

@@ -237,7 +237,7 @@ export function WebGLRendererConfig() {
     glInstance.setPixelRatio(window.devicePixelRatio);
     glInstance.setSize(sizeInstance.width, sizeInstance.height);
     glInstance.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [gl, size]);
 
   return null;
 }

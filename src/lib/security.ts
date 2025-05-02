@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 // Security headers configuration
 export const securityHeaders = {

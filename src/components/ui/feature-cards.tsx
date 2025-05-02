@@ -4,69 +4,75 @@ import { SparklesIcon, RocketLaunchIcon, CodeBracketIcon } from '@heroicons/reac
 export function FeatureCards() {
   return (
     <div className="grid md:grid-cols-3 gap-8">
-      <CardSpotlight className="min-h-[320px] bg-[#0d1117] group" color="#1a2433">
-        <div className="bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 relative z-30">
-          <SparklesIcon className="w-6 h-6 text-blue-400 transition-colors" />
-        </div>
-        <div className="relative z-30 space-y-4">
-          <p className="text-xl font-bold text-white">
-            Smart Suggestions
-          </p>
-          <div className="text-neutral-200">
-            <ul className="list-none mt-2 space-y-2">
-              <Step title="AI-powered analysis" iconColor="text-blue-400" />
-              <Step title="Meaningful improvements" iconColor="text-blue-400" />
-              <Step title="Contribution optimization" iconColor="text-blue-400" />
-              <Step title="Smart recommendations" iconColor="text-blue-400" />
-            </ul>
+      <CardSpotlight className="min-h-[320px] group bg-gradient-to-br from-[#0d1117] to-[#1a2433]" color="#1a2433">
+        <div className="relative z-20">
+          <div className="bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <SparklesIcon className="w-6 h-6 text-blue-400 transition-colors" />
           </div>
-          <p className="text-neutral-300 text-sm">
-            AI analyzes your repositories and suggests meaningful improvements to boost your contribution graph.
-          </p>
+          <div className="space-y-4">
+            <p className="text-xl font-bold text-white">
+              Smart Suggestions
+            </p>
+            <div className="text-neutral-200">
+              <ul className="list-none mt-2 space-y-2">
+                <Step title="AI-powered analysis" iconColor="text-blue-400" />
+                <Step title="Meaningful improvements" iconColor="text-blue-400" />
+                <Step title="Contribution optimization" iconColor="text-blue-400" />
+                <Step title="Smart recommendations" iconColor="text-blue-400" />
+              </ul>
+            </div>
+            <p className="text-neutral-300 text-sm">
+              AI analyzes your repositories and suggests meaningful improvements to boost your contribution graph.
+            </p>
+          </div>
         </div>
       </CardSpotlight>
 
-      <CardSpotlight className="min-h-[320px] bg-[#0d1117] group" color="#1a2433">
-        <div className="bg-green-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 relative z-30">
-          <RocketLaunchIcon className="w-6 h-6 text-green-400 transition-colors" />
-        </div>
-        <div className="relative z-30 space-y-3 md:space-y-4">
-          <p className="text-lg md:text-xl font-bold text-white">
-            Automated Updates
-          </p>
-          <div className="text-neutral-200">
-            <ul className="list-none mt-2 space-y-1.5 md:space-y-2">
-              <Step title="One-click apply" iconColor="text-green-400" />
-              <Step title="Automated commits" iconColor="text-green-400" />
-              <Step title="Pull request handling" iconColor="text-green-400" />
-              <Step title="Version control" iconColor="text-green-400" />
-            </ul>
+      <CardSpotlight className="min-h-[320px] group bg-gradient-to-br from-[#0d1117] to-[#1a2433]" color="#1a2433">
+        <div className="relative z-20">
+          <div className="bg-green-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <RocketLaunchIcon className="w-6 h-6 text-green-400 transition-colors" />
           </div>
-          <p className="text-neutral-300 text-xs md:text-sm">
-            One-click apply for suggested changes. CommitPilot handles the commits and pull requests.
-          </p>
+          <div className="space-y-3 md:space-y-4">
+            <p className="text-lg md:text-xl font-bold text-white">
+              Automated Updates
+            </p>
+            <div className="text-neutral-200">
+              <ul className="list-none mt-2 space-y-1.5 md:space-y-2">
+                <Step title="One-click apply" iconColor="text-green-400" />
+                <Step title="Automated commits" iconColor="text-green-400" />
+                <Step title="Pull request handling" iconColor="text-green-400" />
+                <Step title="Version control" iconColor="text-green-400" />
+              </ul>
+            </div>
+            <p className="text-neutral-300 text-xs md:text-sm">
+              One-click apply for suggested changes. CommitPilot handles the commits and pull requests.
+            </p>
+          </div>
         </div>
       </CardSpotlight>
 
-      <CardSpotlight className="min-h-[320px] bg-[#0d1117] group" color="#1a2433">
-        <div className="bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 relative z-30">
-          <CodeBracketIcon className="w-6 h-6 text-purple-400 transition-colors" />
-        </div>
-        <div className="relative z-30 space-y-3 md:space-y-4">
-          <p className="text-lg md:text-xl font-bold text-white">
-            Code Quality
-          </p>
-          <div className="text-neutral-200">
-            <ul className="list-none mt-2 space-y-1.5 md:space-y-2">
-              <Step title="Best practices" iconColor="text-purple-400" />
-              <Step title="Code analysis" iconColor="text-purple-400" />
-              <Step title="Quality assurance" iconColor="text-purple-400" />
-              <Step title="Smart validation" iconColor="text-purple-400" />
-            </ul>
+      <CardSpotlight className="min-h-[320px] group bg-gradient-to-br from-[#0d1117] to-[#1a2433]" color="#1a2433">
+        <div className="relative z-20">
+          <div className="bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <CodeBracketIcon className="w-6 h-6 text-purple-400 transition-colors" />
           </div>
-          <p className="text-neutral-300 text-xs md:text-sm">
-            Ensures high-quality contributions with smart code analysis and best practices.
-          </p>
+          <div className="space-y-3 md:space-y-4">
+            <p className="text-lg md:text-xl font-bold text-white">
+              Code Quality
+            </p>
+            <div className="text-neutral-200">
+              <ul className="list-none mt-2 space-y-1.5 md:space-y-2">
+                <Step title="Best practices" iconColor="text-purple-400" />
+                <Step title="Code analysis" iconColor="text-purple-400" />
+                <Step title="Quality assurance" iconColor="text-purple-400" />
+                <Step title="Smart validation" iconColor="text-purple-400" />
+              </ul>
+            </div>
+            <p className="text-neutral-300 text-xs md:text-sm">
+              Ensures high-quality contributions with smart code analysis and best practices.
+            </p>
+          </div>
         </div>
       </CardSpotlight>
     </div>
