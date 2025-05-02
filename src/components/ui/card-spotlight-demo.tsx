@@ -1,6 +1,7 @@
 'use client';
 
 import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
 export default function CardSpotlightDemo() {
   return (
