@@ -186,11 +186,17 @@ interface ShaderProps {
   maxFps?: number;
 }
 
+interface Uniforms {
+  [key: string]: {
+    value: number | number[] | number[][] | THREE.Vector2 | THREE.Vector3 | THREE.Vector3[];
+    type: string;
+  };
+}
+
 const ShaderMaterial: React.FC<{
   source: string;
   uniforms: Uniforms;
   maxFps?: number;
-  hovered?: boolean;
 }> = ({
   source,
   uniforms,
@@ -225,7 +231,7 @@ const ShaderMaterial: React.FC<{
 
       switch (uniform.type) {
         case "uniform1f":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1f" };
+          preparedUniforms[uniformName] = { value: uniform.value as number, type: "1f" };
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = {
@@ -234,7 +240,7 @@ const ShaderMaterial: React.FC<{
           };
           break;
         case "uniform1fv":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1fv" };
+          preparedUniforms[uniformName] = { value: uniform.value as number[], type: "1fv" };
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = {
@@ -250,18 +256,8 @@ const ShaderMaterial: React.FC<{
             type: "2f",
           };
           break;
-        default:
-          console.error(`Invalid uniform type for '${uniformName}'.`);
-          break;
       }
     }
-
-    preparedUniforms["u_time"] = { value: 0, type: "1f" };
-    preparedUniforms["u_resolution"] = { 
-      value: new THREE.Vector2(size.width, size.height),
-      type: "2f"
-    };
-
     return preparedUniforms;
   };
 
@@ -297,13 +293,6 @@ const ShaderMaterial: React.FC<{
     </mesh>
   );
 };
-
-interface Uniforms {
-  [key: string]: {
-    value: number[] | number[][] | number;
-    type: string;
-  };
-}
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
   return (

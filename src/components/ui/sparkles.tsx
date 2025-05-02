@@ -38,10 +38,6 @@ export const SparklesCore = (props: ParticlesProps) => {
     });
   }, []);
 
-  const particlesLoaded = async (): Promise<void> => {
-    console.log("Particles loaded");
-  };
-
   const generatedId = useId();
 
   const options: RecursivePartial<IOptions> = {
@@ -289,7 +285,6 @@ export const SparklesCore = (props: ParticlesProps) => {
       <div className={cn("h-full w-full", className)}>
         <Particles
           id={id || generatedId}
-          particlesLoaded={particlesLoaded}
           options={options}
         />
       </div>
