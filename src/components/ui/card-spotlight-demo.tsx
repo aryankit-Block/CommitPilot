@@ -57,4 +57,10 @@ const CheckIcon = () => {
       />
     </svg>
   );
-}; 
+};
+
+type ButtonProps = {
+  borderRadius?: string;
+  children: React.ReactNode;
+  ...
+} 
