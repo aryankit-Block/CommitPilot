@@ -12,7 +12,7 @@ interface CounterAnimationProps {
 export function CounterAnimation({ end, duration, suffix = '', className = '' }: CounterAnimationProps) {
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLDivElement>(null);
-  const animationFrameId = useRef<number>();
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
     const currentRef = countRef.current;
