@@ -1,5 +1,6 @@
 'use client';
 
+import * as THREE from "three";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { useRef } from "react";
