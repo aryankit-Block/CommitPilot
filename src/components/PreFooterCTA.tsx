@@ -79,7 +79,7 @@ const PreFooterCTA = () => {
               </Link>
               
               <Link 
-                href="https://github.com/yourusername/commitpilot"
+                href="https://github.com/aryankit-Block/CommitPilot.git"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center px-8 py-3 font-medium text-white border-2 border-[#8b5cf6]/50 rounded-lg hover:bg-[#8b5cf6]/20 transition-all duration-300 hover:border-[#8b5cf6]/70"
