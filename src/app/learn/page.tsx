@@ -26,14 +26,14 @@ export default function LearnMore() {
                 Discover how CommitPilot enhances your development workflow with AI-powered insights and automated improvements.
               </p>
               <div className="flex items-center justify-center space-x-4 mb-8">
+                <a href="https://www.linkedin.com/in/aryankit" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <FaLinkedin className="w-6 h-6" />
+                </a>
                 <a href="https://github.com/aryankit-Block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                   <FaGithub className="w-6 h-6" />
                 </a>
-                <a href="https://x.com/Aryankit_9CR" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://x.com/Aryankit_9CR?t=Ef2_cHkIoJbkrHw9Wity4Q&s=08" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                   <FaTwitter className="w-6 h-6" />
-                </a>
-                <a href="https://www.linkedin.com/in/aryankit" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <FaLinkedin className="w-6 h-6" />
                 </a>
                 <a href="https://instagram.com/Aryankit.block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                   <FaInstagram className="w-6 h-6" />
