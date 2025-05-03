@@ -122,6 +122,7 @@ export default function LearnMore() {
                     />
                     Your browser does not support the video tag.
                   </video>
+                  <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay rounded-md"></div>
                 </div>
               </div>
             </div>
@@ -148,6 +149,7 @@ export default function LearnMore() {
                     />
                     Your browser does not support the video tag.
                   </video>
+                  <div className="absolute inset-0 bg-purple-500/10 mix-blend-overlay rounded-md"></div>
                 </div>
               </div>
             </div>
@@ -174,6 +176,7 @@ export default function LearnMore() {
                     />
                     Your browser does not support the video tag.
                   </video>
+                  <div className="absolute inset-0 bg-green-500/10 mix-blend-overlay rounded-md"></div>
                 </div>
               </div>
             </div>
