@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { ArrowRightIcon, BeakerIcon, CommandLineIcon, CpuChipIcon, LightBulbIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/moving-border';

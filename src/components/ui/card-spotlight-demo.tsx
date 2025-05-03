@@ -62,5 +62,5 @@ const CheckIcon = () => {
 type ButtonProps = {
   borderRadius?: string;
   children: React.ReactNode;
-  ...
+  
 } 
