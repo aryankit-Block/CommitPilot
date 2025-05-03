@@ -109,14 +109,14 @@ export default function LearnMore() {
               </div>
               <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 border border-gray-700/50">
                 <video 
-                  className="w-full h-full rounded-md"
+                  className="w-full h-full rounded-md object-cover"
                   autoPlay 
                   loop 
                   muted 
                   playsInline
                 >
                   <source 
-                    src="https://cdn.dribbble.com/userupload/43145227/file/original-4cc74d128bd153755377781781e5b0b1.mp4" 
+                    src="https://cdn.dribbble.com/userupload/43145227/file/original-4cc74d128bd153755377781e5b0b1.mp4" 
                     type="video/mp4" 
                   />
                   Your browser does not support the video tag.
