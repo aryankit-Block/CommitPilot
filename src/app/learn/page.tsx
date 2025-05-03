@@ -143,7 +143,7 @@ export default function LearnMore() {
                     playsInline
                   >
                     <source 
-                      src="/videos/4167404-uhd_2160_2880_24fps.mp4" 
+                      src="/videos/Receive Smart Suggestions.mp4" 
                       type="video/mp4" 
                     />
                     Your browser does not support the video tag.
