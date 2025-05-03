@@ -159,8 +159,22 @@ export default function LearnMore() {
                   With one click, apply suggested changes and let CommitPilot handle the commits, pull requests, and quality checks automatically.
                 </p>
               </div>
-              <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 border border-gray-700/50">
-                <div className="aspect-video bg-gradient-to-br from-gray-700 to-gray-800 rounded-md"></div>
+              <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 border border-gray-700/50 overflow-hidden">
+                <div className="aspect-video w-full h-full relative">
+                  <video 
+                    className="absolute inset-0 w-full h-full rounded-md object-cover"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  >
+                    <source 
+                      src="/videos/Automated Improvements.mp4" 
+                      type="video/mp4" 
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
             </div>
           </div>
