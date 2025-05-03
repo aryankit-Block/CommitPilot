@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { ArrowRightIcon, BeakerIcon, CommandLineIcon, CpuChipIcon, LightBulbIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/moving-border';
+import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 export default function LearnMore() {
   return (
@@ -24,6 +25,20 @@ export default function LearnMore() {
               <p className="text-xl text-gray-300 mb-8 relative z-20">
                 Discover how CommitPilot enhances your development workflow with AI-powered insights and automated improvements.
               </p>
+              <div className="flex items-center justify-center space-x-4 mb-8">
+                <a href="https://github.com/aryankit-Block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <FaGithub className="w-6 h-6" />
+                </a>
+                <a href="https://x.com/Aryankit_9CR" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <FaTwitter className="w-6 h-6" />
+                </a>
+                <a href="https://www.linkedin.com/in/aryankit" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <FaLinkedin className="w-6 h-6" />
+                </a>
+                <a href="https://instagram.com/Aryankit.block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <FaInstagram className="w-6 h-6" />
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -203,7 +218,7 @@ export default function LearnMore() {
             className="border-[#8b5cf6]/50 hover:border-[#8b5cf6]/70 px-8 py-3 font-medium bg-[#1a2433] hover:bg-[#8b5cf6]/10 cursor-pointer text-gray-300 hover:text-white transition-colors duration-300"
             containerClassName="w-auto h-[50px] mt-4"
             duration={4000}
-            onClick={() => window.open('https://github.com/Aryankit9CR/CommitPilot', '_blank')}
+            onClick={() => window.open('https://github.com/aryankit-Block/CommitPilot.git', '_blank')}
           >
             View on GitHub
             <ArrowRightIcon className="w-5 h-5 ml-2" />
