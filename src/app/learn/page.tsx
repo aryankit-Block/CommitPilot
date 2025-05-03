@@ -116,7 +116,7 @@ export default function LearnMore() {
                   playsInline
                 >
                   <source 
-                    src="https://cdn.dribbble.com/userupload/43145227/file/original-4cc74d128bd153755377781e5b0b1.mp4" 
+                    src="/videos/original-f701b76a3cd24793f95df3a4628098f9.mp4" 
                     type="video/mp4" 
                   />
                   Your browser does not support the video tag.
