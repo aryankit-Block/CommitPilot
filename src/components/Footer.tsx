@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaTwitter, FaLinkedin, FaGithub, FaArrowRight } from "react-icons/fa";
+import { FaTwitter, FaLinkedin, FaGithub, FaArrowRight, FaInstagram } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
@@ -26,9 +26,10 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { Icon: FaTwitter, href: "https://twitter.com" },
-    { Icon: FaLinkedin, href: "https://linkedin.com" },
-    { Icon: FaGithub, href: "https://github.com" },
+    { Icon: FaTwitter, href: "https://x.com/Aryankit_9CR?t=Ef2_cHkIoJbkrHw9Wity4Q&s=08" },
+    { Icon: FaLinkedin, href: "https://www.linkedin.com/in/aryankit" },
+    { Icon: FaGithub, href: "https://github.com/aryankit-Block" },
+    { Icon: FaInstagram, href: "https://instagram.com/Aryankit.block" },
   ];
 
   if (!isMounted) {
