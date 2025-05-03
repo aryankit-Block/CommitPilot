@@ -107,20 +107,22 @@ export default function LearnMore() {
                   Simply connect your GitHub account and select the repositories you want to enhance. CommitPilot securely analyzes your codebase and contribution patterns.
                 </p>
               </div>
-              <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 border border-gray-700/50">
-                <video 
-                  className="w-full h-full rounded-md object-cover"
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                >
-                  <source 
-                    src="/videos/original-f701b76a3cd24793f95df3a4628098f9.mp4" 
-                    type="video/mp4" 
-                  />
-                  Your browser does not support the video tag.
-                </video>
+              <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 border border-gray-700/50 overflow-hidden">
+                <div className="aspect-video w-full h-full relative">
+                  <video 
+                    className="absolute inset-0 w-full h-full rounded-md object-cover"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  >
+                    <source 
+                      src="/videos/original-f701b76a3cd24793f95df3a4628098f9.mp4" 
+                      type="video/mp4" 
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
             </div>
 
