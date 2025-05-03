@@ -166,9 +166,13 @@ export default function LearnMore() {
                   <video 
                     className="absolute inset-0 w-full h-full rounded-md object-cover"
                     autoPlay 
-                    loop 
                     muted 
                     playsInline
+                    onTimeUpdate={(e) => {
+                      if (e.currentTarget.currentTime >= 11) {
+                        e.currentTarget.pause();
+                      }
+                    }}
                   >
                     <source 
                       src="/videos/Automated Improvements.mp4" 
