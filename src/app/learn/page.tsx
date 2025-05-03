@@ -203,9 +203,9 @@ export default function LearnMore() {
             className="border-[#8b5cf6]/50 hover:border-[#8b5cf6]/70 px-8 py-3 font-medium bg-[#1a2433] hover:bg-[#8b5cf6]/10 cursor-pointer text-gray-300 hover:text-white transition-colors duration-300"
             containerClassName="w-auto h-[50px] mt-4"
             duration={4000}
-            onClick={() => {/* TODO: Add sign in or relevant action here */}}
+            onClick={() => window.open('https://github.com/Aryankit9CR/CommitPilot', '_blank')}
           >
-            Get Started Now
+            View on GitHub
             <ArrowRightIcon className="w-5 h-5 ml-2" />
           </Button>
         </div>

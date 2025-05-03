@@ -1,6 +1,8 @@
 {
-  "name": "commitpilot-frontend",
-  "version": "0.1.0",
+  "name": "commitpilot",
+  "version": "1.0.0",
+  "author": "Ankit (Aryankit) <aryankitb@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
