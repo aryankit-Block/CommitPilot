@@ -6,24 +6,20 @@ import {
   useMotionTemplate,
   useMotionValue,
   useTransform,
-} from "motion/react";
+} from "framer-motion";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
-type ButtonProps = {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   borderRadius?: string;
-  children: React.ReactNode;
-  as?: React.ElementType;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
-  className?: string;
-} & React.HTMLAttributes<HTMLButtonElement>;
+}
 
 export function Button({
   borderRadius = "1.75rem",
   children,
-  as: Component = "button",
   containerClassName,
   borderClassName,
   duration,
@@ -31,7 +27,7 @@ export function Button({
   ...otherProps
 }: ButtonProps) {
   return (
-    <Component
+    <button
       className={cn(
         "relative h-16 w-40 overflow-hidden bg-transparent p-[1px] text-xl cursor-pointer",
         containerClassName,
@@ -66,7 +62,7 @@ export function Button({
       >
         {children}
       </div>
-    </Component>
+    </button>
   );
 }
 
