@@ -5,14 +5,14 @@ import { CounterAnimation } from '@/components/ui/counter-animation';
 import { Cover } from '@/components/ui/cover';
 import { Button } from '@/components/ui/moving-border';
 import { useRouter } from 'next/navigation';
-import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0d1117] to-[#1a2433] text-white">
+    <main className="min-h-screen bg-[#0d1117] text-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="container mx-auto px-4 py-28">
@@ -22,8 +22,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 text-transparent bg-clip-text relative z-20">
-                Revolutionize Your GitHub Contributions
+              <h1 className="text-5xl md:text-6xl font-bold mb-4 md:mb-6">
+                <span className="bg-gradient-to-r from-[#818cf8] to-[#c4b5fd] text-transparent bg-clip-text">
+                  Let AI Power Your <Cover className="bg-gradient-to-r from-[#818cf8] to-[#c4b5fd] text-transparent bg-clip-text">GitHub Contributions</Cover>
+                </span>
               </h1>
             </motion.div>
             <motion.div
@@ -31,28 +33,29 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <p className="text-xl text-gray-300 mb-8 relative z-20">
-                Discover how CommitPilot enhances your development workflow with AI-powered insights and automated improvements.
+              <p className="text-xl text-gray-300 mb-4 md:mb-8">
+                CommitPilot helps you maintain consistent GitHub activity with AI-powered suggestions and automated improvements.
               </p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex items-center justify-center space-x-6 mb-8"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center"
             >
-              <a href="https://www.linkedin.com/in/aryankit" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <FaLinkedin className="w-6 h-6" />
-              </a>
-              <a href="https://github.com/aryankit-Block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <FaGithub className="w-6 h-6" />
-              </a>
-              <a href="https://x.com/Aryankit_9CR?t=Ef2_cHkIoJbkrHw9Wity4Q&s=08" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <FaTwitter className="w-6 h-6" />
-              </a>
-              <a href="https://instagram.com/Aryankit.block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <FaInstagram className="w-6 h-6" />
-              </a>
+              <button className="bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#9333ea] hover:to-[#4f46e5] text-white px-8 py-3 rounded-lg font-medium flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-purple-500/25 cursor-pointer hover:cursor-pointer focus:cursor-pointer">
+                Sign in with GitHub
+                <FaGithub className="w-5 h-5 ml-2" />
+              </button>
+              <Button
+                borderRadius="0.5rem"
+                className="border-[#8b5cf6]/50 hover:border-[#8b5cf6]/70 px-8 py-3 font-medium bg-[#0d1117] hover:bg-[#8b5cf6]/10 cursor-pointer text-gray-300 hover:text-white transition-colors duration-300"
+                containerClassName="w-auto h-[50px]"
+                duration={4000}
+                onClick={() => router.push('/learn')}
+              >
+                Learn more
+              </Button>
             </motion.div>
           </div>
         </div>
@@ -62,7 +65,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-purple-500/20 via-blue-500/10 to-transparent" 
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#312e81]/20 via-transparent to-transparent" 
         />
       </div>
 
