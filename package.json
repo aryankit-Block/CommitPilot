@@ -66,6 +66,7 @@
     "typescript": "^5"
   },
   "optionalDependencies": {
-    "lightningcss-linux-x64-musl": "^1.22.1"
+    "lightningcss-linux-x64-musl": "^1.22.1",
+    "@tailwindcss/oxide-linux-x64-musl": "^4.0.0"
   }
 }
