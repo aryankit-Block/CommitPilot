@@ -8,6 +8,7 @@
     "node": "18.x"
   },
   "scripts": {
+    "postinstall": "npm rebuild lightningcss --platform=linux --arch=x64",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -63,5 +64,8 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.8",
     "typescript": "^5"
+  },
+  "optionalDependencies": {
+    "lightningcss-linux-x64-musl": "^1.22.1"
   }
 }
