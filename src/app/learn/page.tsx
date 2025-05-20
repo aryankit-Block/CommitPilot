@@ -5,6 +5,7 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { ArrowRightIcon, BeakerIcon, CommandLineIcon, CpuChipIcon, LightBulbIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/moving-border';
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FiHome, FiFolder, FiBarChart2, FiSettings } from 'react-icons/fi';
 
 export default function LearnMore() {
   return (
@@ -22,29 +23,43 @@ export default function LearnMore() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 text-transparent bg-clip-text relative z-20">
                 Revolutionize Your GitHub Contributions
               </h1>
-              <p className="text-xl text-gray-300 mb-8 relative z-20">
+              <p className="text-xl text-gray-300 mb-12 relative z-20">
                 Discover how CommitPilot enhances your development workflow with AI-powered insights and automated improvements.
               </p>
-              <div className="flex items-center justify-center space-x-4 mb-8">
-                <a href="https://www.linkedin.com/in/aryankit" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <FaLinkedin className="w-6 h-6" />
-                </a>
-                <a href="https://github.com/aryankit-Block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <FaGithub className="w-6 h-6" />
-                </a>
-                <a href="https://x.com/Aryankit_9CR?t=Ef2_cHkIoJbkrHw9Wity4Q&s=08" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <FaTwitter className="w-6 h-6" />
-                </a>
-                <a href="https://instagram.com/Aryankit.block" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <FaInstagram className="w-6 h-6" />
-                </a>
+              <div className="flex items-center justify-center space-x-4 mb-8 mt-4 z-20 relative">
+                {[
+                  { Icon: FaLinkedin, href: "https://www.linkedin.com/in/aryankit" },
+                  { Icon: FaGithub, href: "https://github.com/aryankit-Block" },
+                  { Icon: FaTwitter, href: "https://x.com/Aryankit_9CR?t=Ef2_cHkIoJbkrHw9Wity4Q&s=08" },
+                  { Icon: FaInstagram, href: "https://instagram.com/Aryankit.block" }
+                ].map(({ Icon, href }) => (
+                  <motion.a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ 
+                      scale: 1.1,
+                      backgroundColor: "rgba(139, 92, 246, 0.1)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-gray-300 hover:text-[#818cf8] transition-all duration-300 p-2 rounded-lg cursor-pointer"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
               </div>
             </motion.div>
           </div>
         </div>
         
         {/* Background gradient effect */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-purple-500/20 via-blue-500/10 to-transparent" />
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#312e81]/20 via-transparent to-transparent pointer-events-none" 
+        />
       </div>
 
       {/* Features Grid */}
@@ -206,7 +221,7 @@ export default function LearnMore() {
 
       {/* CTA Section */}
       <div className="container mx-auto px-4 py-20 border-t border-gray-700/50">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-y-8 relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 text-transparent bg-clip-text drop-shadow-lg">
             Ready to Transform Your GitHub Activity?
           </h2>

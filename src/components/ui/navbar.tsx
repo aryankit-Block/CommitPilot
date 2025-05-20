@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
+import { supabase } from '../../lib/supabaseClient';
 
 // Throttle function to limit how often the scroll handler fires
 const throttle = <T extends (...args: any[]) => void>(func: T, limit: number) => {
@@ -54,10 +55,19 @@ export const Navbar = () => {
       url: '/learn'
     },
     {
-      text: 'Dashboard',
-      url: '/dashboard'
+      text: 'Demo',
+      url: '/demo'
     }
   ];
+
+  const handleGitHubSignIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: 'http://localhost:3000/dashboard',
+      },
+    });
+  };
 
   return (
     <nav 
@@ -110,6 +120,7 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <button 
               className="bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#9333ea] hover:to-[#4f46e5] text-white px-6 py-2 rounded-lg font-medium flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-purple-500/25 cursor-pointer hover:cursor-pointer focus:cursor-pointer"
+              onClick={handleGitHubSignIn}
             >
               Sign in with GitHub
               <FaGithub className="w-5 h-5 ml-2" />
@@ -142,6 +153,7 @@ export const Navbar = () => {
               ))}
               <button 
                 className="w-full mt-4 bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#9333ea] hover:to-[#4f46e5] text-white px-6 py-2 rounded-lg font-medium flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-purple-500/25 cursor-pointer hover:cursor-pointer focus:cursor-pointer"
+                onClick={handleGitHubSignIn}
               >
                 Sign in with GitHub
                 <FaGithub className="w-5 h-5 ml-2" />

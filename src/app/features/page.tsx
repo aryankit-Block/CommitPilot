@@ -46,7 +46,7 @@ export default function FeaturesPage() {
             className="md:col-span-2 lg:col-span-1"
           >
             <VideoAnimation
-              videoSrc="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              videoSrc="/videos/original-f701b76a3cd24793f95df3a4628098f9.mp4"
               title="AI-Powered Development"
               description="Watch how our AI analyzes your code and suggests improvements in real-time."
               className="h-full"

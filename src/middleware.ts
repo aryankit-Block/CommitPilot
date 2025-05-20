@@ -7,28 +7,31 @@ const ipRequests = new Map<string, { count: number; resetTime: number }>();
 
 export async function middleware(request: NextRequest) {
   // Apply security headers
+  // We apply security headers in both development and production by calling the securityMiddleware function
   const response = securityMiddleware(request);
 
-  // Rate limiting
-  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
-  const now = Date.now();
-  const requestData = ipRequests.get(ip);
+  // Rate limiting (apply only in production)
+  if (process.env.NODE_ENV === 'production') {
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
+    const now = Date.now();
+    const requestData = ipRequests.get(ip);
 
-  if (requestData) {
-    if (now > requestData.resetTime) {
-      // Reset if window has passed
-      ipRequests.set(ip, { count: 1, resetTime: now + rateLimit.windowMs });
-    } else if (requestData.count >= rateLimit.max) {
-      // Rate limit exceeded
-      return new NextResponse('Too Many Requests', { status: 429 });
+    if (requestData) {
+      if (now > requestData.resetTime) {
+        // Reset if window has passed
+        ipRequests.set(ip, { count: 1, resetTime: now + rateLimit.windowMs });
+      } else if (requestData.count >= rateLimit.max) {
+        // Rate limit exceeded
+        return new NextResponse('Too Many Requests', { status: 429 });
+      } else {
+        // Increment request count
+        requestData.count++;
+        ipRequests.set(ip, requestData);
+      }
     } else {
-      // Increment request count
-      requestData.count++;
-      ipRequests.set(ip, requestData);
+      // First request from this IP
+      ipRequests.set(ip, { count: 1, resetTime: now + rateLimit.windowMs });
     }
-  } else {
-    // First request from this IP
-    ipRequests.set(ip, { count: 1, resetTime: now + rateLimit.windowMs });
   }
 
   // CORS handling

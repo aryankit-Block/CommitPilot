@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaRocket, FaGithub } from "react-icons/fa";
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
 const PreFooterCTA = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -11,6 +12,15 @@ const PreFooterCTA = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleGitHubSignIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: 'http://localhost:3000/dashboard',
+      },
+    });
+  };
 
   if (!isMounted) {
     return null; // or a simple loading state
@@ -64,8 +74,8 @@ const PreFooterCTA = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-4"
             >
-              <Link 
-                href="/get-started"
+              <button
+                onClick={handleGitHubSignIn}
                 className="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] rounded-lg overflow-hidden transition-all duration-300 hover:from-[#9333ea] hover:to-[#4f46e5] shadow-lg hover:shadow-purple-500/25"
               >
                 <motion.span
@@ -76,7 +86,7 @@ const PreFooterCTA = () => {
                   Get Started
                   <FaRocket className="text-lg" />
                 </motion.span>
-              </Link>
+              </button>
               
               <Link 
                 href="https://github.com/aryankit-Block/CommitPilot.git"

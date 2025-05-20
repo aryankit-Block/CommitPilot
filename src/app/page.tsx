@@ -7,16 +7,26 @@ import { Button } from '@/components/ui/moving-border';
 import { useRouter } from 'next/navigation';
 import { FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { supabase } from '../lib/supabaseClient';
 
 export default function Home() {
   const router = useRouter();
+
+  const handleGitHubSignIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: 'http://localhost:3000/dashboard',
+      },
+    });
+  };
 
   return (
     <main className="min-h-screen bg-[#0d1117] text-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="container mx-auto px-4 py-28">
-          <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-y-8">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-y-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -43,7 +53,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center"
             >
-              <button className="bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#9333ea] hover:to-[#4f46e5] text-white px-8 py-3 rounded-lg font-medium flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-purple-500/25 cursor-pointer hover:cursor-pointer focus:cursor-pointer">
+              <button className="bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] hover:from-[#9333ea] hover:to-[#4f46e5] text-white px-8 py-3 rounded-lg font-medium flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-purple-500/25 cursor-pointer hover:cursor-pointer focus:cursor-pointer" onClick={handleGitHubSignIn}>
                 Sign in with GitHub
                 <FaGithub className="w-5 h-5 ml-2" />
               </button>
@@ -65,7 +75,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#312e81]/20 via-transparent to-transparent" 
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#312e81]/20 via-transparent to-transparent z-0" 
         />
       </div>
 
